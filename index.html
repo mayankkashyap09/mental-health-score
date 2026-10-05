@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3f5ee">
+  <title>STUDENT MENTAL HEALTH PRECTION | Prediction</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#main" aria-label="Student Wellbeing home">
+        <span class="brand-mark" aria-hidden="true">S</span>
+        <span class="brand-name">Student Wellbeing<span>MODEL WORKSPACE</span></span>
+      </a>
+      <div class="topbar-tools">
+        <label class="theme-switch" for="theme-toggle">
+          <span>Light</span>
+          <input id="theme-toggle" type="checkbox" role="switch" aria-label="Use dark theme">
+          <span class="switch-track" aria-hidden="true"></span>
+          <span>Dark</span>
+        </label>
+        <span class="topbar-note" id="api-connection" data-state="checking" aria-live="polite"><span class="status-dot"></span><span id="api-connection-label">CHECKING API</span><code>127.0.0.1:8000</code></span>
+      </div>
+    </header>
+
+    <section class="page-intro" id="main">
+      <div class="intro-copy-block">
+        <p class="eyebrow">STUDENT SOCIAL &amp; DIGITAL LIFE</p>
+        <h1>MENTAL HEALTH PREDICTION</h1>
+        <p class="intro-copy">Enter a student's profile and daily routine to generate a model estimate.</p>
+      </div>
+      <div class="intro-meta"><span class="meta-mark" aria-hidden="true">01</span><span><strong>Assessment input</strong><small>All fields are required</small></span></div>
+    </section>
+
+    <div class="workspace">
+      <form id="prediction-form" class="form-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">YOUR DETAILS</p>
+            <h2>Student profile</h2>
+          </div>
+          <span class="required-note"><span aria-hidden="true">*</span> Required field</span>
+        </div>
+        <div class="completion-meter">
+          <div class="completion-copy"><span>Profile completion</span><span id="completion-count">0 of 12 complete</span></div>
+          <div class="completion-track" id="completion-progress" role="progressbar" aria-label="Profile completion" aria-valuemin="0" aria-valuemax="12" aria-valuenow="0"><span id="completion-bar"></span></div>
+        </div>
+
+        <fieldset>
+          <legend><span class="section-number">01</span> About you</legend>
+          <div class="field-grid">
+            <label class="field">
+              <span>Age <b aria-hidden="true">*</b></span>
+              <input name="age" type="number" min="10" max="100" placeholder="e.g. 20" required>
+            </label>
+            <label class="field">
+              <span>Gender <b aria-hidden="true">*</b></span>
+              <select name="gender" required>
+                <option value="" disabled selected>Select gender</option>
+                <option>Female</option>
+                <option>Male</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Country <b aria-hidden="true">*</b></span>
+              <input name="country" list="country-options" placeholder="Start typing a country" required>
+              <datalist id="country-options">
+                <option value="India"></option><option value="USA"></option>
+                <option value="Canada"></option><option value="Australia"></option>
+                <option value="UK"></option><option value="Germany"></option>
+                <option value="Mexico"></option><option value="Turkey"></option>
+                <option value="France"></option>
+              </datalist>
+            </label>
+            <label class="field">
+              <span>Academic level <b aria-hidden="true">*</b></span>
+              <select name="academic_level" required>
+                <option value="" disabled selected>Select level</option>
+                <option>High School</option><option>Undergraduate</option><option>Graduate</option>
+              </select>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend><span class="section-number">02</span> Social media</legend>
+          <div class="field-grid">
+            <label class="field">
+              <span>Most-used platform <b aria-hidden="true">*</b></span>
+              <select name="most_used_platform" required>
+                <option value="" disabled selected>Select a platform</option>
+                <option>Instagram</option><option>YouTube</option><option>TikTok</option>
+                <option>Facebook</option><option>LinkedIn</option><option>Snapchat</option>
+                <option>Twitter</option><option>LINE</option><option>KakaoTalk</option>
+                <option>VKontakte</option><option>WhatsApp</option><option>WeChat</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Main purpose <b aria-hidden="true">*</b></span>
+              <select name="purpose_of_use" required>
+                <option value="" disabled selected>Select a purpose</option>
+                <option>Networking</option><option>Education</option>
+                <option>Entertainment</option><option>News</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Daily usage <b aria-hidden="true">*</b></span>
+              <span class="input-unit"><input name="avg_daily_usage_hours" type="number" min="0" max="24" step="0.1" placeholder="e.g. 3.5" required><span>hours</span></span>
+            </label>
+            <label class="field">
+              <span>Daily phone unlocks <b aria-hidden="true">*</b></span>
+              <span class="input-unit"><input name="daily_unlocks" type="number" min="0" step="1" placeholder="e.g. 40" required><span>times</span></span>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend><span class="section-number">03</span> Daily routine</legend>
+          <div class="field-grid">
+            <label class="field">
+              <span>Study time <b aria-hidden="true">*</b></span>
+              <span class="input-unit"><input name="study_hours" type="number" min="0" max="24" step="0.1" placeholder="e.g. 5" required><span>hours/day</span></span>
+            </label>
+            <label class="field">
+              <span>Physical activity <b aria-hidden="true">*</b></span>
+              <span class="input-unit"><input name="physical_activity_hours" type="number" min="0" max="24" step="0.1" placeholder="e.g. 1" required><span>hours/day</span></span>
+            </label>
+            <label class="field">
+              <span>Sleep per night <b aria-hidden="true">*</b></span>
+              <span class="input-unit"><input name="sleep_hours_per_night" type="number" min="0" max="24" step="0.1" placeholder="e.g. 7" required><span>hours</span></span>
+            </label>
+            <label class="field">
+              <span>Current stress level <b aria-hidden="true">*</b></span>
+              <select name="stress_level" required>
+                <option value="" disabled selected>Select a level</option>
+                <option>Low</option><option>Medium</option><option>High</option><option>Very High</option>
+              </select>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="form-footer">
+          <p>Results are estimates from a machine-learning model, not a clinical assessment.</p>
+          <div class="form-actions">
+            <button class="reset-button" type="reset">Clear form</button>
+            <button class="submit-button" type="submit"><span>Generate prediction</span><span aria-hidden="true">&#8594;</span></button>
+          </div>
+        </div>
+      </form>
+
+      <aside class="result-panel" aria-live="polite" aria-atomic="true">
+        <div class="result-topline"><span>PREDICTION OUTPUT</span><span class="result-state" id="result-state" data-state="idle">AWAITING INPUT</span></div>
+        <div id="result-content" class="result-content">
+          <p class="result-label">PREDICTED MENTAL HEALTH SCORE</p>
+          <div class="score-gauge" id="score-gauge" role="meter" aria-label="Predicted mental health score on a 0 to 10 scale" aria-valuemin="0" aria-valuemax="10" aria-valuetext="No prediction yet">
+            <svg class="gauge-arc" viewBox="0 0 200 112" aria-hidden="true">
+              <path class="gauge-track" d="M 10 102 A 90 90 0 0 1 190 102" pathLength="100"></path>
+              <path class="gauge-progress" id="gauge-progress" d="M 10 102 A 90 90 0 0 1 190 102" pathLength="100"></path>
+            </svg>
+            <div class="gauge-score"><span id="result-value">--</span><span class="gauge-unit">/ 10</span></div>
+            <span class="gauge-min" aria-hidden="true">0</span>
+            <span class="gauge-max" aria-hidden="true">10</span>
+          </div>
+          <p class="result-message" id="result-message">Complete the profile and run a prediction to see the model output.</p>
+        </div>
+        <div class="result-divider"></div>
+        <p class="privacy-note"><span class="privacy-mark" aria-hidden="true">i</span><span>Your result is generated by the project model. It should not be used to diagnose or make decisions about someone's wellbeing.</span></p>
+        <p class="api-status" id="api-status"><span class="status-dot"></span><span>Waiting for request</span></p>
+      </aside>
+    </div>
+
+    <footer class="page-footer"><span>STUDENT WELLBEING <span class="footer-divider">/</span> MODEL WORKSPACE</span><span>Informational estimate only</span></footer>
+  </main>
+</body>
+</html>
