@@ -14,7 +14,7 @@ const completionProgress = document.querySelector("#completion-progress");
 const completionBar = document.querySelector("#completion-bar");
 const resetButton = form.querySelector("button[type='reset']");
 const requiredFields = [...form.querySelectorAll("[required]")];
-const apiBaseUrl = "http://127.0.0.1:8000";
+const apiBaseUrl = "https://mental-health-score-6n5n.onrender.com";
 const themeToggle = document.querySelector("#theme-toggle");
 const scoreScaleMaximum = 10;
 
